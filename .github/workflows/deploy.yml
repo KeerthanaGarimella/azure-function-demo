@@ -1,4 +1,4 @@
-name: Azure Function CI/CD
+name: build-and-deploy
 
 on:
   push:
@@ -14,27 +14,25 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v3
         with:
-          node-version: '20'
+          node-version: '18.x'
 
       - name: Install Dependencies
         run: npm install
 
       - name: Run Build (if any)
-        run: npm run build || echo "No build step defined"
+        run: npm run build --if-present
 
       - name: Run Tests
-        run: npm test
+        run: npm test --if-present
 
       - name: Archive Function App
-        run: |
-          mkdir packaged
-          zip -r packaged/functionapp.zip . -x "*.git*" "*.github*" "node_modules/*"
+        run: zip -r functionapp.zip .
 
       - name: Deploy to Azure Function App
         uses: Azure/functions-action@v1
         with:
-          app-name: azure-demoapp
-          package: packaged/functionapp.zip
+          app-name: <your-function-app-name>  # change this
+          package: functionapp.zip
           publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }}
