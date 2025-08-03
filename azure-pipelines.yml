@@ -1,0 +1,59 @@
+trigger:
+  - main
+
+stages:
+  - stage: Build
+    displayName: "Build Stage"
+    jobs:
+      - job: Build
+        pool:
+          vmImage: windows-latest
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: "20.x"
+          - script: |
+              npm install
+              npm run build
+            displayName: "Install & Build"
+          - task: ArchiveFiles@2
+            inputs:
+              rootFolderOrFile: "$(System.DefaultWorkingDirectory)"
+              archiveType: zip
+              archiveFile: "$(Build.ArtifactStagingDirectory)/functionapp.zip"
+              replaceExistingArchive: true
+          - publish: "$(Build.ArtifactStagingDirectory)/functionapp.zip"
+            artifact: drop
+
+  - stage: Test
+    displayName: "Test Stage"
+    dependsOn: Build
+    jobs:
+      - job: Test
+        pool:
+          vmImage: windows-latest
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: "20.x"
+          - script: |
+              npm install
+              npm test
+            displayName: "Run Tests"
+
+  - stage: Deploy
+    displayName: "Deploy Stage"
+    dependsOn: Test
+    jobs:
+      - job: Deploy
+        pool:
+          vmImage: windows-latest
+        steps:
+          - download: current
+            artifact: drop
+          - task: AzureFunctionApp@1
+            inputs:
+              azureSubscription: "exo-service-connection"
+              appType: "functionApp"
+              appName: "rishhi-func-demo"
+              package: "$(Pipeline.Workspace)/drop/functionapp.zip"
