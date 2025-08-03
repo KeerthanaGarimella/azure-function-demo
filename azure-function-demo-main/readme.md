@@ -100,7 +100,7 @@ stages:
           inputs:
             azureSubscription: "exo-service-connection"
             appType: "functionApp"
-            appName: "rishhi-func-demo"
+            appName: "azure-demoapp"
             package: "$(Pipeline.Workspace)/drop/functionapp.zip"
 ```
 
