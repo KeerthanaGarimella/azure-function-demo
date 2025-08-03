@@ -123,24 +123,3 @@ stages:
 Hello, world!
 ```
 
----
-
-## 6. Result
-
-- **Function URL:** https://rishhi-func-demo-ccc9etg0a3h0ebe4.canadacentral-01.azurewebsites.net/api/HttpExample
-  
-- **Screenshots:**
-
-  1. Build Stage Success
-     ![1754159866268](image/readme/1754159866268.png)
-  2. Test Stage Success
-     ![1754159880232](image/readme/1754159880232.png)
-
-  3. Deploy Stage Success
-     ![1754159872177](image/readme/1754159872177.png)
-  4. Browser screenshot of function output
-     ![1754159890489](image/readme/1754159890489.png)
-
----
-
-**Author:** Rishikumar Patel (8972657)
