@@ -9,7 +9,7 @@ stages:
       - job: Build
         displayName: "Build Node.js Azure Function"
         pool:
-          name: song-bird
+          name: Default
         steps:
           - task: NodeTool@0
             inputs:
@@ -57,7 +57,7 @@ stages:
       - job: Test
         displayName: "Run Unit Tests"
         pool:
-          name: song-bird
+          name: Default
         steps:
           - task: NodeTool@0
             inputs:
@@ -77,7 +77,7 @@ stages:
       - job: Deploy
         displayName: "Deploy to Azure Function App"
         pool:
-          name: song-bird
+          name: Default
         steps:
           # Download the artifact from previous stage
           - download: current
@@ -87,5 +87,5 @@ stages:
             inputs:
               azureSubscription: "exo-service-connection"
               appType: "functionApp"
-              appName: ""azure-demoapp""
+              appName: "my-azure-function-demo"
               package: "$(Pipeline.Workspace)/drop/functionapp.zip"
