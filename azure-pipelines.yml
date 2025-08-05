@@ -87,5 +87,5 @@ stages:
             inputs:
               azureSubscription: "exo-service-connection"
               appType: "functionApp"
-              appName: "my-azure-function-demo"
+              appName: "my-azure-functiondemo"
               package: "$(Pipeline.Workspace)/drop/functionapp.zip"
