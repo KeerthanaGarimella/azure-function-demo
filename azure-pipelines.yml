@@ -1,5 +1,5 @@
 trigger:
-  - main
+  - Azure-Function-Application-
 
 stages:
   # -------------------- BUILD STAGE --------------------
@@ -85,7 +85,7 @@ stages:
 
           - task: AzureFunctionApp@1
             inputs:
-              azureSubscription: "exo-service-connection"
+              azureSubscription: "new-connection"
               appType: "functionApp"
-              appName: "my-azure-functiondemo"
+              appName: "my-azure-functiondemo" # Updated app name
               package: "$(Pipeline.Workspace)/drop/functionapp.zip"
