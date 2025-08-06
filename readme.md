@@ -6,7 +6,7 @@ This README documents the step-by-step process of setting up a CI/CD pipeline in
 
 ## 🚀 Project Overview
 
-We create a simple HTTP-triggered Azure Function that returns `"Hello, <name>!"` and deploy it using a 3-stage Azure DevOps pipeline:
+We create a simple HTTP-triggered Azure Function that returns `"Hello, world!"` and deploy it using a 3-stage Azure DevOps pipeline:
 
 1. **Build Stage** – Install dependencies and package the function
 2. **Test Stage** – Run unit tests
@@ -88,7 +88,7 @@ yaml
           inputs:
             azureSubscription: 'new-connection' 
             appType: 'functionApp'
-            appName: 'my-azure-functiondemo-hga3hnakf8dkfgb0'   
+            appName: 'my-azure-functiondemo'   
             package: '$(Pipeline.Workspace)/drop/functionapp.zip'
 
 ⚡ Triggering the Pipeline
