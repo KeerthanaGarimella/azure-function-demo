@@ -112,8 +112,3 @@ https://my-azure-functiondemo-hga3hnakf8dkfgb0.canadacentral-01.azurewebsites.ne
 
 Hello, World!
 
-Screenshots 
-
-Build stage success
-
-![image alt](https://github.com/KeerthanaGarimella/azure-function-demo/blob/f93912e8a86df1010accc6b591a01ca696d9a678/Screenshot%20(2003).png)
